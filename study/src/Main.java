@@ -1,6 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-
         // if 단독사용
         boolean x = true;
         if (x) {
@@ -35,16 +34,16 @@ public class Main {
         int score = 91;
         if (score >= 90) {
             System.out.println("A 학점");
-        } else if (score >= 80 && score < 90) {
+        }else if (score >= 80 && score < 90) {
             System.out.println("B 학점");
-        } else if (score >= 70 && score < 80) {
+        }else if (score >= 70 && score < 80) {
             System.out.println("C 학점");
-        } else if (score >= 60 && score < 70) {
+        }else if (score >= 60 && score < 70) {
             System.out.println("D 학점");
-        } else {
+        }else {
             System.out.println("F 학점");
         }
-        // 관게가 없는 조건을 if else로 설정하면 안됨
+        // 관계가 없는 조건을 if else로 설정하면 안됨
         int num = 4;
         if (num > 0) {
             System.out.println("num은 양수");
@@ -57,7 +56,8 @@ public class Main {
         }
         if (num % 2 == 0) {
             System.out.println("num은 짝수");
-        } //if문 속에 if문
+        }
+        // if문 속에 if문
         if (true) {
             if (true) {
                 if (true) {
@@ -65,5 +65,23 @@ public class Main {
                 }
             }
         }
+
+        // Switch case
+        int number = 1;
+        switch(number) {
+            case 1:
+                System.out.println("A");
+                break;  // 항상 break 키워드와 함께 쓰자 !!!
+            case 2:
+                System.out.println("B");
+                break;
+            case 3:
+                System.out.println("C");
+                break;
+            default:
+                System.out.println("D");
+                break;
+        }
     }
 }
+
