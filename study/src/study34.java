@@ -12,6 +12,7 @@ public class study34 {
 //        }
 
         // while문
+        
         int count = 0; //초기식
         while (count < 5) {
             System.out.print(count + " ");
