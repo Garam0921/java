@@ -1,7 +1,7 @@
 public class study0304Array {
     public static void main(String[] args) {
 
-        int[] intArray1 = {1,2,3,4,5};
+        int[] intArray1 = {1, 2, 3, 4, 5};
         System.out.println(intArray1[0]);
 
         int[] intArray2 = new int[5];
@@ -15,13 +15,13 @@ public class study0304Array {
 
         int[] intArray3 = new int[50];
         // int[] intArray3 = 가변의 길이를 가진 배열을 저장함
-        for (int i=0; i<intArray3.length; i++){
-            intArray3[i] = i+1;
+        for (int i = 0; i < intArray3.length; i++) {
+            intArray3[i] = i + 1;
             System.out.print(intArray3[i] + " ");
         }
         System.out.println();
 
-        int[] intArray4 = new int[]{1,2,3,4,5};
+        int[] intArray4 = new int[]{1, 2, 3, 4, 5};
         System.out.println(intArray4[0]);
 
         //배역의 복사 (= 참조복사)
@@ -38,5 +38,6 @@ public class study0304Array {
         b = 6;
         System.out.println("2 " + b);
         System.out.println("3 " + a);
+
     }
 }
