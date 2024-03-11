@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 public class study0306String2 {
     public static void main(String[] args) {
-
         String str1 = "Java Study";
         // Study를 못찾으면 변경하지 않고 원본 그대로 둠
         System.out.println(str1.replace("Study", "공부"));
@@ -17,11 +16,8 @@ public class study0306String2 {
 
         // "앞뒤" 공백지우기
         String _str1 = "   abc def   ";
-        //_str1 = _str1.trim();
+        _str1 = _str1.trim();
         System.out.println(_str1);
-
-        System.out.println();
-
         // 모든 공백 지우기
         System.out.println(_str1.replaceAll(" ", ""));
     }

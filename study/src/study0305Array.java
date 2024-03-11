@@ -2,12 +2,12 @@ import java.util.Arrays;
 
 public class study0305Array {
     public static void main(String[] args) {
-        //배열 선언법
+        // 배열 선언법
         int[] intArray1; // 자바 스타일!!!
         int intArray2[]; // c언어 스타일이고 쓰이지 않음
 
         // 배열 객체 생성
-        int[] intArray3 = new int[5];  // 메모리에 5개의 빈 저장소를 만듬
+        int[] intArray3 = new int[5]; // 메모리에 5개의 빈 저장소를 만듬
         // 배열 객체에 값 입력
         intArray3[0] = 10;
         intArray3[1] = 20;
@@ -24,9 +24,10 @@ public class study0305Array {
         for (int i=0; i<5; i++) {
             System.out.print(intArray4[i] + " ");
         }
+        System.out.println();
 
         // 배열의 초기화
-        // 배열을 선언, 생성하고 입력값을 넣지 않은 경우, 자동으로 초기값이 입력됨.
+        // 배열을 선언,생성하고 입력값을 넣지 않은 경우, 자동으로 초기값이 입력됨
         int[] intList = new int[3];
         float[] floatList = new float[3];
         boolean[] boolList = new boolean[3];
@@ -37,6 +38,5 @@ public class study0305Array {
         System.out.println(Arrays.toString(boolList));
         System.out.println(Arrays.toString(charList));
         System.out.println(Arrays.toString(strList));
-
     }
 }
