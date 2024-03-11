@@ -1,15 +1,23 @@
-/*
-public class Main {
-    public static void main(String[] args) {
-        // 클래스의 생성자가 없는 경우 => 기본생성자가 자동으로 만들어짐
-        // 매개변수가 있는 생성자만 있는 경우 =>기본생성자는 만들어 지지 않는다!!
-        Students a = new Students();
-        Students tom = new Students("tom", "20", "Seuoul", "12345");
+package Main;
+
+class A {
+    int m = 3;
+    void print() {
+        System.out.println("객체 생성 및 활용");
     }
 }
+public class Main {
+    public static void main(String[] args) {
+        // 클래스로 객체(붕어빵) 생성
+        A a = new A();
 
-// 클래스 생성자 2개는 만들자
-// 기본 생성자는 외우자
-// public Students() {  // 기본생성자
-//}
-*/
+        // 클래스 멤버 활용(붕어빵 먹기)
+        // @필드 활용: 필드에 값을 읽기/쓰기
+        a.m = 5;
+        System.out.println(a.m);
+
+        // @메서드 활용: 메서드릴 호출
+        a.print();
+    }
+
+}
