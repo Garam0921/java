@@ -1,38 +1,25 @@
-/*
-package sec01_accessmodifier.EX02_AccessModifierOfClass_1;
+import java.util.Arrays;
 
-*/
-/*같은 패키지에서의 클래스 접근지정자 vs. 생성자 접근지정자*//*
-
-
-//public class
-public class A {
-    //public 기본생성자를 컴파일러가 추가
-}
+public class study0312 {
+    public static void main(String[] args) {
+        // 아래 배열의 모든 값들을 다른 배열에 복사하기(for문 이용)
 
 
+        int[] intArray1 = {1, 2, 3, 4, 5};
+        int[] intArray2 = intArray1.clone();
 
-
-*/
-/*같은 패키지에서의 클래스 접근지정자 vs. 생성자 접근지정자*//*
-
-
-//default class
-class B {
-    //default 생성자 자동 추가
-}
-
-
-
-
-*/
-/*같은 패키지에서의 클래스 접근지정자 vs. 생성자 접근지정자*//*
-
-
-//public class
-public class C {
-    C(){ //default 생성자
-
+        for (int i = 0; i < intArray2.length; i++) {
+            System.out.print(intArray2[i] + " ");
+        }
     }
 }
-*/
+
+/*  int[] intArray1 = {1, 2, 3, 4, 5};
+    int[] intArray2 = new int[intArray1.length];
+    for (int i = 0; i < intArray2.length; i++) {
+        intArray2[i] = intArray1[i];
+    }
+    System.out.print(intArray1[i] + " ");
+    System.out.print(intArray2[i] + " ");           */
+
+

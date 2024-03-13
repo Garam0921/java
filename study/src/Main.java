@@ -1,17 +1,27 @@
+import java.util.Arrays;
+
 public class Main {
+    public static void main(String[] args) {
+        int [] arr = new int [] {1, 2, 8, 3, 2, 2, 2, 5, 1};
+        int [] fr = new int [arr.length];
+        int visited = -1;
+        for(int i = 0; i < arr.length; i++){
+            int count = 1;
+            for(int j = i+1; j < arr.length; j++){
+                if(arr[i] == arr[j]){
+                    count++;
+                    fr[j] = visited;
+                }
+            }
+            if(fr[i] != visited)
+                fr[i] = count;
+            System.out.println(Arrays.toString(fr));
+        }
 
-    static int name = 10000;
-
-    int age;
-
-    static {
-        name = 10000;
-    }
-
-    public Main() {
-    }
-
-    public Main(int age) {
-        this.age = age;
+        for(int i = 0; i < fr.length; i++){
+            if(fr[i] != visited)
+                System.out.println("    " + arr[i] + "    |    " + fr[i]);
+        }
     }
 }
+//코드 수정 결과적으로 두번째 2 는 안세도록 (의미없는 반복 없애기)
