@@ -1,4 +1,4 @@
-package javaStudy0313;
+package java327p;
 
 /*선언타입에 따른 사용가능한 멤버*/
 
@@ -34,21 +34,3 @@ public class study0313p325 {
         ab.abc();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
