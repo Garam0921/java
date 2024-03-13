@@ -4,7 +4,7 @@ class B extends A {}
 class C extends B {}
 class D extends B {}
 
-public class study0318p318 {
+public class study0313p318 {
     public static void main(String[] args) {
         // A 타입의 다형적 표현
         A a1 = new A();         // A는 A이다. (O)
