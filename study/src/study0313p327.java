@@ -1,4 +1,4 @@
-package javaStudy0313;
+package java0313.java327p.javaStudy0313;
 
 /*캐스팅의 가능여부를 확인할 수 있는 instanceof*/
 

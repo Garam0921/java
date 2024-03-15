@@ -1,4 +1,4 @@
-package java327p;
+package java0313.java327p;
 
 /*선언타입에 따른 사용가능한 멤버*/
 
