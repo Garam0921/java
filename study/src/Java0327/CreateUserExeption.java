@@ -20,12 +20,12 @@ class MyRTException extends RuntimeException {
     }
  }
  class A {
-/*    // 3. 사용자 정의 예외 객체 생성
+    // 3. 사용자 정의 예외 객체 생성
      MyException me1 = new MyException();
      MyException me2 = new MyException("예외 메시지: MyException");
 
      MyRTException mre1 = new MyRTException();
-     MyRTException mre2 = new MyRTException("예외 메시지: MyRTException");*/
+     MyRTException mre2 = new MyRTException("예외 메시지: MyRTException");
 
      // 4. 예외 던지기(throw): 던진 시점에서 예외 발생
      // 방법 1. 예외를 직접 처리
