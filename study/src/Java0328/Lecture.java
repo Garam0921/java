@@ -1,18 +1,18 @@
 package Java0328;
 
 public class Lecture {
-    private int lectureId;
-    private String subject;
-    private int duration;
-    private String category;
-    private String difficulty;
+    int lectureId;
+    String title;
+    int duration;
+    LectureCategory category;
+    String difficulty;
 
     public Lecture() {
     }
 
-    public Lecture(int lectureId, String subject, int duration, String category, String difficulty) {
+    public Lecture(int lectureId, String title, int duration, LectureCategory category, String difficulty) {
         this.lectureId = lectureId;
-        this.subject = subject;
+        this.title = title;
         this.duration = duration;
         this.category = category;
         this.difficulty = difficulty;
@@ -26,12 +26,12 @@ public class Lecture {
         this.lectureId = lectureId;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {
-        this.subject = subject;
+        this.title = title;
     }
 
     public int getDuration() {
@@ -42,11 +42,11 @@ public class Lecture {
         this.duration = duration;
     }
 
-    public String getCategory() {
+    public LectureCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(LectureCategory category) {
         this.category = category;
     }
 
@@ -60,7 +60,7 @@ public class Lecture {
 
     @Override
     public String toString() {
-        return lectureId + " / " + subject + " / " + category
+        return lectureId + " / " + title + " / " + category
                 + " / " + difficulty + " / " + duration + "분";
     }
 }

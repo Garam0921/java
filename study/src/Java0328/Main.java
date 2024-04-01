@@ -1,110 +1,120 @@
 package Java0328;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Main {
+    static ArrayList<User> users;
+    static ArrayList<Lecture> lectures;
+    static ArrayList<LectureRegistration> lectureRegistrations;
+    static ArrayList<Review> reviews;
     public static void main(String[] args) {
-        User user1 = new User("Garam", "Garam01", "q1w2e3r4!"
-                , LocalDate.of(2000, 1, 1), "garam@email.com");
-        User user2 = new User("Babara", "Babara02", "babara13579"
-                , LocalDate.of(2005, 3, 10), "babara13579@email.com");
-        User user3 = new User("Daram", "Daram03", "hahaha369"
-                , LocalDate.of(2010, 5, 15), "daram@email.com");
-        User user4 = new User("Rora", "Rora04", "0987654321"
-                , LocalDate.of(2015, 9, 21), "rora@email.com");
-        User user5 = new User("Aram", "aram05", "dnflskfk"
-                , LocalDate.of(2020, 12, 23), "aram@email.com");
+        // 정보 초기화
+        InfoCreate.createInfos();
+        reviews = new ArrayList<>();
 
+        // 강의 ID로 수강하는 학생의 loginId 찾기
+        getLoginIdByLectureId(2);
+        // 유저의 loginId로 강의명 찾기
+        getTitleByLoginId("hero11");
+        // 강의명으로 수강생들의 이메일 찾기
+        getEmailByLectureTitle("Javascript");
 
-        Lecture lecture1 = new Lecture(1, "Java", 500
-                , "Programming", "A");
-        Lecture lecture2 = new Lecture(2, "Css", 300
-                , "Programming", "B");
-        Lecture lecture3 = new Lecture(3, "Database", 95
-                , "Programming", "C");
+        boolean canAddReview = false;
+        canAddReview = createReview("hero11", 1, 10, "아주 좋았어요");
+        // void가 아닌 리턴형이 있는 메소드는 활용범위가 넓음. 예를 들어,
+        // canAddReview의 true/false 여부에 따라 유저에게 상태 알림을 보낼 수 있음
+        canAddReview = createReview("hero11", 2, 10, "아주 좋았어요2");
+        canAddReview = createReview("nice", 3, 6, "보통이에요");
+    }
 
-        ArrayList<LectureRegistration> lectureRegistrations = new ArrayList<>();
-        LectureRegistration lectureRegistration1 = new LectureRegistration("Garam01", 1);
-        lectureRegistrations.add(lectureRegistration1);
-        LectureRegistration lectureRegistration2 = new LectureRegistration("Babara02", 2);
-        lectureRegistrations.add(lectureRegistration2);
-        LectureRegistration lectureRegistration3 = new LectureRegistration("Daram03", 1);
-        lectureRegistrations.add(lectureRegistration3);
-        LectureRegistration lectureRegistration4 = new LectureRegistration("Rora04", 3);
-        lectureRegistrations.add(lectureRegistration4);
-        LectureRegistration lectureRegistration5 = new LectureRegistration("Aaram05", 1);
-        lectureRegistrations.add(lectureRegistration5);
-
-        // 문제2
-        for (int i = 0; i < lectureRegistrations.size(); i++) {
-            if (lectureRegistrations.get(i).getLectureId() == 1) {
-                System.out.println(lectureRegistrations.get(i).getUserId());
-
+    // 수강등록클래스에서 lectureId로 수강생의 loginId 찾기
+    // 두개의 정보가 모두 수강등록 클래스안에 있으므로 반복문을 1회만 사용해도 됨
+    public static void getLoginIdByLectureId(int lectureId) {
+        for(int i=0; i<lectureRegistrations.size(); i++) {
+            if (lectureRegistrations.get(i).getLectureId() == lectureId) {
+                String loginId = lectureRegistrations.get(i).getLoginId();
+                System.out.println("1. 로그인ID : " + loginId);
             }
         }
+    }
 
-        System.out.println();
-
-        // 문제3
-        // ArrayList 추가
-
-        ArrayList<Lecture> subjectName = new ArrayList<>();
-        subjectName.add(new Lecture(1, "Java", 500, "Programming", "A"));
-        subjectName.add(new Lecture(2, "Css", 300, "Programming", "B"));
-        subjectName.add(new Lecture(3, "Database", 95, "Programming", "C"));
-
-
-        // 유저의 loginId를 입력
-        String lectureLoginId = "Rora04";
-
-
-        for (LectureRegistration registration : lectureRegistrations) {   // 입력한 loginId와 일치하는지 확인
-            if (registration.getUserId().equals(lectureLoginId)) {
-                int lectureId = registration.getLectureId();
-
-                for (Lecture lecture : subjectName) {
-                    if (lecture.getLectureId() == lectureId) {
-                        System.out.println("강의명: " + lecture.getSubject());
-
+    // 수강생의 loginId로 수강중인 과목명 찾기
+    // 과목명은 수강등록 클래스안에 없기 때문에 수강등록 클래스에서 lectureId를 먼저 찾고
+    // lectureId로 과목클래스에서 과목명을 찾아야 함. (반복문 2회 필요)
+    public static void getTitleByLoginId(String loginId) {
+        for (int i=0; i<lectureRegistrations.size(); i++) {
+            if(lectureRegistrations.get(i).getLoginId().equals(loginId)) {
+                int lectureId = lectureRegistrations.get(i).lectureId;
+                for (int j=0; j<lectures.size(); j++) {
+                    if (lectures.get(j).getLectureId() == lectureId) {
+                        String title = lectures.get(j).getTitle();
+                        System.out.println("2. 수강과목명 : " + title);
                     }
                 }
             }
         }
-        System.out.println();
+    }
 
-        // 문제4번
-        // ArrayList 추가
-        ArrayList<User> userEmail = new ArrayList<>();
-        userEmail.add(user1);
-        userEmail.add(user2);
-        userEmail.add(user3);
-        userEmail.add(user4);
-        userEmail.add(user5);
-
-        // 강의명을 입력
-        String lectureSubject = "Java";
-
-
-        for (Lecture lecture : subjectName) {
-            if (lecture.getSubject().equals(lectureSubject)) {
-                // lecture 강의명이 입력한 강의명과 일치하는지 확인
-                for (LectureRegistration registration : lectureRegistrations) {
-                    if (registration.getLectureId() == lecture.getLectureId()) {  // 현재 강의 등록 객체의 lectureId가 입력한 강의의 lectureId와 일치하는지 확인
-                        String lecturesUserId = registration.getUserId();   // 일치하는 경우 해당 유저 loginId를 get
-
-                        // 해당 유저의 이메일 찾기
-                        for (User user : userEmail) {
-                            // 해당 유저의 loginId가 찾는 loginId와 일치하는지 확인
-                            if (user.getLoginId().equals(lecturesUserId)) {
-                                System.out.println("이메일: " + user.getEmail());
-                                break;  // 사용자를 찾았으므로 탈출
-                            }
-                        }
-                    }
-                }
-                break;  // 강의를 찾았으므로 탈출
+    // 과목명으로 수강중인 학생들의 이메일 찾기
+    // 수강등록 클래스에서 관계정보를 얻으려면 해당 과목명의 lectureId를 먼저 얻어야 함(반복문1회)
+    // lectureId로 수강등록 클래스에서 수강생의 loginId를 얻고 (반목문1회)
+    // loginId로 유저 클래스에서 해당 유저의 이메일을 얻음(반복문1회)
+    public static void getEmailByLectureTitle(String title) {
+        int lectureId = -1;
+        for (int i=0; i<lectures.size(); i++) {
+            if (lectures.get(i).getTitle().equals(title)) {
+                lectureId = lectures.get(i).getLectureId();
+                break;
             }
         }
+        if (lectureId < 0) {
+            return; // lectureId가 -1이라면 해당 과목명의 과목이 없다는 뜻
+        }
+        for (int i=0; i<lectureRegistrations.size(); i++) {
+            if(lectureRegistrations.get(i).getLectureId() == lectureId) {
+                String loginId = lectureRegistrations.get(i).getLoginId();
+                for (int j=0; j<users.size(); j++) {
+                    if (users.get(j).getLoginId().equals(loginId)) {
+                        String email = users.get(j).getEmail();
+                        System.out.println("3. 이메일 : " + email);
+                    }
+                }
+            }
+        }
+    }
+
+    public static boolean createReview(String loginId, int lectureId
+            , int rating, String text) {
+        // 점수체크
+        if (rating < 1 || rating > 10) {
+            System.out.println("평가점수는 1~10점 사이입니다.");
+            return false;
+        }
+        // 기존 리뷰 확인
+        if (!reviews.isEmpty()) {
+            for(Review review : reviews) {
+                if (review.getLoginId().equals(loginId)  //equals 을 쓰는 이요 String은 == 사용 불가
+                        && review.getLectureId() == lectureId) {
+                    System.out.println("이미 작성한 리뷰가 있습니다.");
+                    return false;
+                }
+            }
+        }
+        // 수강여부 확인
+        boolean canReview = false;
+        for(LectureRegistration registration : lectureRegistrations) {
+            if (registration.getLoginId().equals(loginId)
+                    && registration.getLectureId() == lectureId) {
+                canReview = true;
+                break;
+            }
+        }
+        if (!canReview) {
+            System.out.println("리뷰 작성 권한이 없습니다.");
+            return false;
+        }
+        reviews.add(new Review(reviews.size()+1, rating, text, loginId, lectureId));
+        System.out.println(reviews.toString());
+        return true;
     }
 }

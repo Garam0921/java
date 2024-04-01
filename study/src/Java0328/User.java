@@ -1,14 +1,13 @@
-
 package Java0328;
 
 import java.time.LocalDate;
 
 public class User {
-    private String name;
-    private String loginId;
-    private String password;
-    private LocalDate birthDate;
-    private String email;
+    String name;
+    String loginId;
+    String password;
+    LocalDate birthDate;
+    String email;
 
     public User() {
     }
