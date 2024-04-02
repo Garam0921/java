@@ -3,11 +3,11 @@ package Java0402Collection.Java0402CollectionSet;
 import java.util.NavigableSet;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
+// 664p 데이터를 입력 순서와 상관없이 크기순으로 출력한다.(검색기능 사용할때 최적화 되어 있다.)
 public class TreeSetMethod_1 {
     public static void main(String[] args) {
 
-        TreeSet<Integer> treeSet = new TreeSet<>();
+        TreeSet<Integer> treeSet = new TreeSet<>();  //
         for(int i=50; i>0; i-=2) {
             treeSet.add(i);
         }
@@ -53,7 +53,7 @@ public class TreeSetMethod_1 {
         for(int i=50; i>0; i-=2) { //[2, 4, 6, ..., 50]
             treeSet.add(i);
         }
-        SortedSet<Integer> sSet = treeSet.headSet(20);
+        SortedSet<Integer> sSet = treeSet.headSet(20);  // SortedSet 부모(조부모) set  . headSet은 본인을 포함하지 않는다 . (headSet은 왼쪽에 있는거)
         System.out.println(sSet.toString()); //[2, 4, 6, 8, 10, 12, 14, 16, 18]
 
         //#10. NavigableSet<E> headSet(E element, boolean inclusive)
@@ -63,7 +63,7 @@ public class TreeSetMethod_1 {
         System.out.println(nSet.toString()); //[2, 4, 6, 8, 10, 12, 14, 16, 18]
 
         //#11. SortedSet<E> tailSet(E element)
-        sSet = treeSet.tailSet(20);
+        sSet = treeSet.tailSet(20);  // tailSet은 본인을 포함한다. (tailSet은 본인포함 오른쪽)
         System.out.println(sSet.toString()); // [20, 22, 24, ..., 50]
 
         //#12. NavigableSet<E> tailSet(E element, boolean inclusive)

@@ -42,11 +42,11 @@ public class HashMapMethod {
         System.out.println(hMap2.containsValue("나나나")); //true
         System.out.println(hMap2.containsValue("다다다")); //false
 
-        //#8. Set<K> keySet()
+        //#8. Set<K> keySet()                             // key만 set으로 뽑아낼 수 있다.
         Set<Integer> keySet = hMap2.keySet();
         System.out.println(keySet.toString()); //[1, 2, 3]
 
-        //#9. Set<Map.Entry<K,V>> entrySet()
+        //#9. Set<Map.Entry<K,V>> entrySet()               // 전체 데이터를 set으로 뽑아낼 수 있다.
         Set<Map.Entry<Integer,String>> entrySet = hMap2.entrySet();
         System.out.println(entrySet.toString()); //[1=나나나, 2=나다라, 3=다라마]
 
@@ -58,7 +58,7 @@ public class HashMapMethod {
         hMap2.remove(4); //동작안함
         System.out.println(hMap2.toString()); //{2=나다라, 3=다라마}
 
-        //#12. remove(Object key, Object value)
+        //#12. remove(Object key, Object value)            // value만으로 remove할 수 없다. 왜? 중복이 허용 되므로.
         hMap2.remove(2, "나다라");
         hMap2.remove(3, "다다다"); //동작안함
         System.out.println(hMap2.toString()); //{3=다라마}

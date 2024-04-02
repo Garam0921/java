@@ -1,4 +1,4 @@
-package Java0402Collection.Java0402CollectionSet;
+package Java0402Collection.Java0402CollectionStack;
 
 import java.util.LinkedList;
 import java.util.Queue;
