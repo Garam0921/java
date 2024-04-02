@@ -1,12 +1,14 @@
 package Java0328;
 
 import java.util.ArrayList;
-
+import java.util.List;
 public class Main {
     static ArrayList<User> users;
     static ArrayList<Lecture> lectures;
     static ArrayList<LectureRegistration> lectureRegistrations;
+    static ArrayList<LectureTeacher> lectureTeachers;
     static ArrayList<Review> reviews;
+    static ArrayList<Teacher> teachers;
     public static void main(String[] args) {
         // 정보 초기화
         InfoCreate.createInfos();
@@ -93,7 +95,7 @@ public class Main {
         // 기존 리뷰 확인
         if (!reviews.isEmpty()) {
             for(Review review : reviews) {
-                if (review.getLoginId().equals(loginId)  //equals 을 쓰는 이요 String은 == 사용 불가
+                if (review.getLoginId().equals(loginId)
                         && review.getLectureId() == lectureId) {
                     System.out.println("이미 작성한 리뷰가 있습니다.");
                     return false;
@@ -116,5 +118,43 @@ public class Main {
         reviews.add(new Review(reviews.size()+1, rating, text, loginId, lectureId));
         System.out.println(reviews.toString());
         return true;
+    }
+
+    // 특정 과목ID로 해당 과목을 가르치는 teacher의 이름 출력
+    public static void getTeacherByLectureId(int lectureId) {
+        String teacherName = null;
+        for (LectureTeacher lt : lectureTeachers) {
+            if (lt.getLectureId() == lectureId) {
+                String teacherId = lt.getTeacherId();
+                for (Teacher teacher : teachers) {
+                    if (teacher.getTeacherId().equals(teacherId)) {
+                        teacherName = teacher.getName();
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        if (teacherName != null) {
+            System.out.println("해당 과목을 가르치는 선생님: " + teacherName);
+        } else {
+            System.out.println("해당 과목을 가르치는 선생님이 없습니다.");
+        }
+    }
+
+    // 특정 teacher가 가르치는 과목명 리스트 출력
+    public static List<String> getLectureTitleListByTeacherId(String teacherId) {
+        List<String> lectureTitles = new ArrayList<>();
+        for (LectureTeacher lt : lectureTeachers) {
+            if (lt.getTeacherId().equals(teacherId)) {
+                int lectureId = lt.getLectureId();
+                for (Lecture lecture : lectures) {
+                    if (lecture.getLectureId() == lectureId) {
+                        lectureTitles.add(lecture.getTitle());
+                    }
+                }
+            }
+        }
+        return lectureTitles;
     }
 }

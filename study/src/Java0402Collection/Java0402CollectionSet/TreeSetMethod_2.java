@@ -3,7 +3,7 @@ package Java0402Collection.Java0402CollectionSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class QueueMethod {
+class QueueMethod {
     public static void main(String[] args) {
 
         //#1. 예외처리기능 미포함 메서드 첫번째 세트

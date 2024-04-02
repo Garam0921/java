@@ -2,7 +2,7 @@ package Java0328;
 
 public class Review {
     private int reviewId;
-    private int rating;  // 1점 ~ 10점
+    private int rating; // 1점 ~ 10점
     private String text;
     private String loginId;
     private int lectureId;

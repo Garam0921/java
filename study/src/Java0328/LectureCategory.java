@@ -1,7 +1,6 @@
 package Java0328;
 
 public enum LectureCategory {
-
     PROGRAMMING,
     MODELING3D,
     PAINTING,

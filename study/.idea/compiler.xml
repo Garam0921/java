@@ -4,5 +4,9 @@
     <excludeFromCompile>
       <file url="file://$PROJECT_DIR$/src/JavaAbstract.java" />
     </excludeFromCompile>
+    <bytecodeTargetLevel target="21" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="--enable-preview" />
   </component>
 </project>
