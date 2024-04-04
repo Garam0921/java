@@ -53,4 +53,5 @@ public class Reply {
     @Override
     public String toString() {
         return replyId + ", " + content + ", " + loginId + ", " + freeBoardId;
+    }
 }
