@@ -20,7 +20,7 @@ public class Q1 {
             else if ('a' <= ch && ch <= 'z')
                 result += (char) (ch - 32);
             else
-                result += ch; 
+                result += ch;
         }
         return result;
         }
