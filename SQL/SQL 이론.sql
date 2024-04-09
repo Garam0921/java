@@ -48,6 +48,7 @@ limit 10, 10;
 select 도시 from 고객;
 select distinct 도시 from 고객; -- distinct는 중복제거
 
+=================================
 
 4월 9일 (화)
 use testdb;
@@ -92,7 +93,7 @@ where 지역 is null;
 
 -- empty value(빈값)
 select * from 고객
-where 지역 = '';
+where 지역 = ' ';
 
 
 -- IN 연산자 (or연산자의 간편버전)
@@ -129,6 +130,9 @@ select * from 고객
 where 고객번호 like '__C%'; -- 3번째 문자가 'C'
 
 
+
+<문자열함수>
+
 -- char_length 문자의 갯수
 -- length 바이트수 (영문=1바이트, 한글=3바이트)
 select char_length('hello'),
@@ -153,13 +157,14 @@ select left('SQL 공부', 3),
 	substr('SQL 공부', 5);
 
 
--- substing_index 구분자를 만날때까지 문자열을 잘라냄
--- 인덱스는 몇번쨰 구분자를 만날때까지 자를지를 결정
--- 인덱스가 음수면 꺼꾸로(오른쪽부터)
+-- substring_index 구분자를 만날때까지 문자열을 잘라냄
+-- 인덱스는 몇번째 구분자를 만날때까지 자를지를 결정
+-- 인덱스가 음수면 오른쪽부터
 select substring_index('서울시 동작구 흑석동', ' ', 1); -- 서울시
 select substring_index('서울시 동작구 흑석동', ' ', 2); -- 서울시 동작구
-select substring_index( 
-	substring_index('서울시 동작구 흑석동', ' ', 2), ' ', '-1'); -- 동작구
+select substring_index('서울시 동작구 흑석동', ' ', -1); -- 흑석동
+select substring_index(
+	substring_index('서울시 동작구 흑석동', ' ', 2), ' ', -1); -- 동작구 
 	
 	
 -- lpad 지정한 길이에서 문자열을 제외한 나머지를 특수문자로 왼쪽부터 채움
@@ -203,6 +208,8 @@ select replace('010_1234_5678', '_','-'); -- 010-1234-5678
 -- reverse 문자열 거꾸로 바꿈
 select reverse('hello'); -- olleh
 
+
+<숫자함수>
 
 -- ceiling 올림
 -- floor 내림
