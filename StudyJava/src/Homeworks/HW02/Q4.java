@@ -113,7 +113,9 @@ public class Q4 {
             , String[] models, int[] years, String[] colors) {
         List<MyCar> myCarList = new ArrayList<>();
 
-        // 여기 코드 작성 !!
+        for (int i = 0; i < brands.length; i++) {
+            myCarList.add(new MyCar(brands[i], models[i], years[i], colors[i]));
+        }
 
         return myCarList;
     }
@@ -121,7 +123,9 @@ public class Q4 {
     public static SimpleCarInfo[] sendCarInfo(List<MyCar> carList) {
         SimpleCarInfo[] cars = new SimpleCarInfo[carList.size()];
 
-        // 여기 코드 작성 !!
+        for (int i = 0; i < carList.size(); i++) {
+            cars[i] = new SimpleCarInfo(carList.get(i).getModel(), carList.get(i).getColor());
+        }
 
         return cars;
     }
