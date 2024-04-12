@@ -1,0 +1,276 @@
+SQL 이론 정리
+
+● 함수
+
+날짜함수
+timestampdiff  사용법 반드시 알고 있기
+adddate  도 많이 쓰임
+
+제어 함수
+if
+case  중요 많이 쓰임 (사용법 암기)
+
+nullif : 
+ifnull : 컬럼에 있는 값을 체크하는 용도
+
+
+■ 문자열 함수
+-- char_length 문자의 갯수
+-- length 바이트 수
+select char_length('hello'),
+	length('hello'),
+	char_length('안녕'),
+	length('안녕');
+	
+-- concat 문자열을 연결
+-- concat_ws 문자열을 구분자와 함께 연결 (ws=with separator)
+select concat('dreams', 'come', 'true'),
+	concat_ws('-', '2023', '01', '29'); 
+
+-- left 문자열의 왼쪽부터 몇개
+-- right 문자열의 오른쪽부터 몇개
+-- substr 몇번째부터 몇개
+select left('SQL 공부', 3),
+	right('SQL 공부', 2),
+	substr('SQL 공부', 3, 4),
+	substr('SQL 공부', 5); 
+
+-- substring_index 구분자를 만날때까지 문자열을 잘라냄
+-- 인덱스는 몇번째 구분자를 만날때까지 자를지를 결정
+-- 인덱스가 음수면 오른쪽부터
+select substring_index('서울시 동작구 흑석동', ' ', 1); -- 서울시
+select substring_index('서울시 동작구 흑석동', ' ', 2); -- 서울시 동작구
+select substring_index('서울시 동작구 흑석동', ' ', -1); -- 흑석동
+select substring_index(
+	substring_index('서울시 동작구 흑석동', ' ', 2), ' ', -1); -- 동작구 
+
+-- lpad 지정한 길이에서 문자열을 제외한 나머지를 특수문자로 왼쪽부터 채움
+-- rpad 오른쪽부터 채움
+select lpad('sql', 10, '#'),
+	rpad('sql', 5, '*');
+
+-- ltrim 왼쪽 공백 제거
+-- rtrim 오른쪽 공백 제거
+-- trim 양쪽 공백 제거
+select ltrim('   sql'), 
+	rtrim('sql     '), 
+	trim('  sql  ');  
+
+-- field 문자열의 위치를 찾음
+-- field(찾는문자열, 문자열1, 문자열2, 문자열3, .....)
+-- find_in_set 문자열 리스트에서 지정한 문자열을 찾음
+-- find_in_set(찾는 문자열, 문자열리스트)
+select field('java', 'sql', 'java', 'javascript'); -- 2
+select find_in_set('java', 'sql,java,javascript'); -- 2
+
+-- locate 기준문자열에서 부분문자열의 위치를 찾음
+-- locate(부분문자열, 기준문자열)
+select locate('world', 'hello world.'); 
+	
+-- elt 지정한 위치에 있는 문자열을 반환	
+select elt(2, 'sql', 'java', 'javascript');
+	
+-- repeat 문자열의 반복
+select repeat('*', 5);
+
+-- replace 문자열의 일부를 다른 문자열로 대체
+-- replace(기준문자열, 바꿀 문자열, 바뀔 문자열)
+select replace('010_1234_5678', '_', '-'); -- 010-1234-5678
+
+-- reverse 문자열 거꾸로 바꿈
+select reverse('hello'); 
+
+■ 숫자 함수
+-- ceiling 올림
+-- floor 내림
+-- round 반올림, 두번째 매개변수 자리에 반올림 자릿수 표시가능
+-- truncate 버림, 지정한 위치에서 버림
+select ceiling(123.16),
+	floor(123.56),
+	round(123.56),
+	round(123.56, 1),
+	truncate(123.56, 1);
+
+-- abs 절대값
+-- sign 음수면 -1, 양수면 1
+select abs(-120),
+	sign(-120),
+	sign(120);
+
+-- power 제곱
+-- sqrt 제곱근
+-- rand 랜덤넘버, 매개변수는 seed의 의미. seed가 같으면 랜덤값이 동일함
+select power(2, 3),
+	sqrt(16),
+	rand(),
+	rand(100),
+	rand(200);
+
+
+■ 날짜 함수
+
+
+-- now 현재 날짜와 시간
+-- sysdate 현재 시스템의 날짜와 시간 (대부분 now와 동일)
+-- curdate 현재 날짜
+-- curtime 현재 시간
+select now(), sysdate(), curdate(), curtime();   
+
+-- 연도,분기,월,일,시,분,초 반환 함수
+select now(), 
+	year(now()),
+	quarter(now()),
+	month(now()),
+	day(now()),
+	hour(now()),
+	minute(now()),
+	second(now());
+
+-- datediff 날짜간의 일수 차이
+-- timestampdiff 두 날짜의 시간을 기준시간으로 변환하여 차를 계산하고
+-- 다시 날짜로 변환하는 내부 프로세스를 따름
+select now(),
+	datediff('2025-12-20', now()), -- 620
+	datediff(now(), '2025-12-20'),
+	timestampdiff(year, now(), '2025-12-20'),
+	timestampdiff(month, now(), '2025-12-20'),
+	timestampdiff(day, now(), '2025-12-20'); -- 619
+	
+-- adddate 특정날짜에 기간을 더한 날짜 반환
+-- subdate 특정날짜에 기간을 뺀 날짜 반환
+select now(),
+	adddate(now(), 50),
+	adddate(now(), -50),
+	subdate(now(), 50),
+	adddate(now(), interval 50 day),
+	adddate(now(), interval 50 month),
+	adddate(now(), interval 50 year),
+	subdate(now(), interval 50 hour);
+
+-- last_day 그 달의 마지막 날
+-- dayofyear 현재 연도에서 며칠이 지났는지
+-- monthname 월을 영문으로
+-- weekday 요일을 정수로 (MySql의 경우, 월요일 0 ~ 일요일 6)
+select now(),
+	last_day(now()),
+	dayofyear(now()),
+	monthname(now()),
+	weekday(now()); 
+
+
+
+
+
+
+■ 제어 함수
+
+
+-- cast 데이터타입을 변경시킴
+/* MySql/Maria의 데이터타입
+char, signed, unsigned, date, datetime, time, binary
+**/
+select cast('1' as unsigned),
+	cast(2 as char);
+	
+-- if (조건식, 참인 경우, 거짓인 경우)
+select if(12500 * 450 > 500000, '초과달성', '미달성');
+
+-- ifnull(A, B)
+-- A가 null이면 B, A가 null이 아니면 A를 반환
+select ifnull(5, 'null'),
+	ifnull(null, '값이 없음'),
+	ifnull(1/0, null); 
+
+-- nullif(A, B)
+-- A와 B가 동일하면 null을 리턴, 다르면 A를 리턴
+/* 특정 컬럼을 업데이트했을 경우, 각 데이터별로 업데이트되었는지 여부를
+확인하는데 사용. (기존 값과 동일하면 빈칸이고 업데이트되었을 경우에는
+업데이트된 값이 기록됨) */
+select nullif('mysql', 'oracle'),
+	nullif('oracle', 'oracle');
+
+-- case
+-- 'case when 조건 then 실행'의 형태로 조건에 따른 실행을 여러개 설정가능
+-- 조건의 마지막에 나머지를 의미하는 else 사용(사용하지 않아도 됨)
+-- case문의 마지막을 의미하는 end 반드시 사용!!
+select case when 12500 * 450 > 500000 then '초과달성'
+			when 2500 * 450 > 400000 then '달성'
+			else '미달성'
+		end;
+
+
+
+
+
+
+■ 집계 함수
+
+
+-- count 데이터 열의 갯수를 세는 함수(null은 제외)
+select count(*),
+	count(고객번호),
+	count(도시),
+	count(지역)
+from 고객;
+select * from 고객;
+
+-- sum 합계
+-- avg 평균
+-- min 최소값
+-- max 최대값
+select sum(마일리지),
+	avg(마일리지),
+	min(마일리지),
+	max(마일리지)
+from 고객;
+
+-- group by 그룹별로 묶어주는 명령어(중요!!)
+select 도시,
+	count(*) as 고객수,
+	avg(마일리지) as 평균마일리지
+from 고객
+group by 도시;
+
+select 담당자직위,
+	도시,
+	count(*) as 고객수,
+	avg(마일리지) as 평균마일리지
+from 고객
+group by 담당자직위, 도시
+order by 담당자직위, 도시;
+
+-- having
+select 도시,
+	count(*) as 고객수,
+	avg(마일리지) as 평균마일리지
+from 고객
+group by 도시
+having count(*) >= 4;
+
+select 도시,
+	sum(마일리지)
+from 고객
+where 고객번호 like 'T%'-- where는 select에 지정된 컬럼이외도 사용가능
+group by 도시
+having sum(마일리지) >= 1000;-- having은 select에 지정된 컬럼만 사용 
+
+-- with rollup 그룹별 소계와 전체 총계를 표시
+select 도시,
+	count(*) as 고객수,
+	avg(마일리지) as 평균마일리지
+from 고객
+group by 도시
+with rollup; -- 고객수 총계
+
+select 담당자직위,
+	도시,
+	count(*) as 고객수
+from 고객
+group by 담당자직위, 도시
+with rollup; -- 담당자직위별 소계 + 총계
+
+-- group_concat 컬럼내의 값을 결합해서 표시
+select 도시,
+	group_concat(고객회사명) as 고객회사명목록
+from 고객
+group by 도시;
